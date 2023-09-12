@@ -11,10 +11,9 @@ story.post("/story", async (req, res) => {
   const {keyword} = req.body;
 
 
-  const maxChar = 500;
+  const maxChar = 550;
 
   try {
-
     const response = await axios.post(
       openaiEndpoint,
       {
@@ -30,14 +29,11 @@ story.post("/story", async (req, res) => {
         },
       }
     );
-
     const aiResponse = response.data.choices[0].text;
-
     const newConversation = new storyModel({
         keyword: keyword,
         generatedStory: aiResponse,
     });
-
     await newConversation.save();
     res.send(aiResponse);
   } catch (error) {
