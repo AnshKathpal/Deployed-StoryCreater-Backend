@@ -11,7 +11,7 @@ story.post("/story", async (req, res) => {
   const {keyword} = req.body;
 
 
-  const maxChar = 550;
+  const maxChar = 500;
 
   try {
     const response = await axios.post(
